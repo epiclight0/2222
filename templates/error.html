@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block contentcenter %}
+
+<div class="alert alert-danger" role="alert">
+    Error: {{ anerror }}
+  </div>
+  <hr class="my-4">
+  <p>This page {{ url }} hasnt <a href="https://analytics.google.com/analytics/web/">Google Analytics</a> implemented</p>
+  <p><u>How implement Google Analytics on your site: <a href ="https://support.google.com/analytics/answer/1008015?hl=en" class="font-weight-bold text-primary">tutorial</a></u></p>
+{% endblock %}

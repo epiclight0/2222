@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block contentcenter %}
+
+<h3 id="v" data-text="Protocol Version" role="presentation"><a href="#v">Protocol Version</a></h3>
+<div class="ind">
+    <p><strong>Required for all hit types.</strong></p>
+    <p class="text-justify">The Protocol version. The current value is '1'. This will only change when there are changes made that are not backwards compatible.</p>
+      <div>
+        Example value: <code translate="no" dir="ltr">1</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">v=1</code>
+      </div>
+      
+    
+  </div>
+<hr>
+<h3 id="tid" data-text="Tracking ID/ Web Property ID" role="presentation"><a href="#tid">Tracking ID/ Web Property ID</a></h3>
+  <div class="ind">
+    <p>
+          <strong>Required for all hit types.</strong>
+    </p>
+    <p class="text-justify">The tracking ID / web property ID. The format is UA-XXXX-Y. All collected data is associated by this ID.</p>
+      <div>
+        Example value: <code translate="no" dir="ltr">UA-XXXX-Y</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">tid=UA-XXXX-Y</code>
+      </div>
+      
+    
+  </div>
+<hr>
+  <h3 id="cid" data-text="Client ID" role="presentation"><a href="#cid">Client ID</a></h3>
+  <div class="ind">
+    <p>Optional.</p>
+    <p class="text-justify">This field is required if User ID (uid) is not specified in the request. This pseudonymously identifies a particular user, device, or browser instance. For the web, this is generally stored as a first-party cookie with a two-year expiration. For mobile apps, this is randomly generated for each particular instance of an application install. The value of this field should be a random UUID (version 4) as described in http://www.ietf.org/rfc/rfc4122.txt.</p>
+      <div>
+        Example value: <code translate="no" dir="ltr">35009a79-1a05-49d7-b876-2b884d0f825b</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">cid=35009a79-1a05-49d7-b876-2b884d0f825b</code>
+      </div>
+  </div>
+
+<hr>
+<h3 id="sr" data-text="Screen Resolution" role="presentation"><a href="#sr">Screen Resolution</a></h3>
+<div class="ind">
+    <p>Optional.</p>
+    <p class="text-justify">Specifies the screen resolution.</p>
+      <div>
+        Example value: <code translate="no" dir="ltr">800x600</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">sr=800x600</code>
+      </div>
+  </div>
+<hr>
+<h3 id="vp" data-text="Viewport size" role="presentation"><a href="#vp">Viewport size</a></h3>
+<div class="ind">
+    <p>Optional.</p>
+    <p class="text-justify">Specifies the viewable area of the browser / device.</p>
+      <div>
+        Example value: <code translate="no" dir="ltr">123x456</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">vp=123x456</code>
+      </div>
+  </div>
+<hr>
+<h3 id="de" data-text="Document Encoding" role="presentation"><a href="#de">Document Encoding</a></h3>
+<div class="ind">
+    <p>
+        Optional.
+    </p>
+    <p class="text-justify">Specifies the character set used to encode the page / document.</p>
+      <div>
+        Example value: <code translate="no" dir="ltr">UTF-8</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">de=UTF-8</code>
+      </div>
+  </div>
+<hr>
+<h3 id="ul" data-text="User Language" role="presentation"><a href="#ul">User Language</a></h3>
+<div class="ind">
+    <p>Optional.</p>
+    <p class="text-justify">Specifies the language.</p>
+      <div>
+        Example value: <code translate="no" dir="ltr">en-us</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">ul=en-us</code>
+      </div>
+  </div>
+<hr>
+<h3 id="je" data-text="Java Enabled" role="presentation"><a href="#je">Java Enabled</a></h3>
+<div class="ind">
+    <p>Optional.</p>
+    <p class="text-justify">Specifies whether Java was enabled.</p>
+      <div>
+        Example value: <code translate="no" dir="ltr">1</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">je=1</code>
+      </div>
+  </div>
+<hr>
+<h3 id="t" data-text="Hit type" role="presentation"><a href="#t">Hit type</a></h3>
+<div class="ind">
+    <p>
+    <strong>Required for all hit types.</strong>
+    </p>
+    <p class="text-justify">The type of hit. Must be one of 'pageview', 'screenview', 'event', 'transaction', 'item', 'social', 'exception', 'timing'.</p>
+    <div>
+        Example value: <code translate="no" dir="ltr">pageview</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">t=pageview</code>
+    </div>
+  </div>
+<hr>
+<h3 id="dl" data-text="Document location URL" role="presentation"><a href="#dl">Document location URL</a></h3>
+<div class="ind">
+    <p>Optional.</p>
+    <p class="text-justify">Use this parameter to send the full URL (document location) of the page on which content resides. You can use the &amp;dh and &amp;dp parameters to override the hostname and path + query portions of the document location, accordingly. The JavaScript clients determine this parameter using the concatenation of the document.location.origin + document.location.pathname + document.location.search browser parameters. Be sure to remove any user authentication or other private information from the URL if present. For 'pageview' hits, either &amp;dl or both &amp;dh and &amp;dp have to be specified for the hit to be valid.</p>
+      <div>
+        Example value: <code translate="no" dir="ltr">http://foo.com/home?a=b</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">dl=http%3A%2F%2Ffoo.com%2Fhome%3Fa%3Db</code>
+      </div>
+  </div>
+<hr>
+<h3 id="dt" data-text="Document Title" role="presentation"><a href="#dt">Document Title</a></h3>
+<div class="ind">
+    <p>Optional.</p>
+    <p class="text-justify">The title of the page / document.</p>
+      <div>
+        Example value: <code translate="no" dir="ltr">Settings</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">dt=Settings</code>
+      </div>
+  </div>
+<hr>
+<h3 id="dt" data-text="GID" role="presentation"><a href="#gid">GID</a></h3>
+<div class="ind">
+    <p>Optional.</p>
+    <p class="text-justify">Used to distinguish users. Stored in a cookie (_gid). Can't be set. Default expiration is 24 hours.
+    </p>
+      <div>
+        Example value: <code translate="no" dir="ltr">824461524.1617041747</code>
+        <br>
+        Example usage: <code translate="no" dir="ltr">_gid=824461524.1617041747</code>
+      </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block contentcenter %}
+<h1>Hi, {{ current_user.username }}!</h1>
+<p class="font-weight-light">Create a new project, or open your previous projects</p>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.post.label }}<br>
+        {{ form.post(class="form-control") }}<br>
+        {% for error in form.post.errors %}
+        <div class="alert alert-warning" role="alert">{{ error }}</div>
+        {% endfor %}
+        {{ form.url.label }}<br>
+        {{ form.url(class="form-control") }}
+        {% for error in form.url.errors %}
+        <div class="alert alert-warning" role="alert">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <p>{{ form.submit(class="btn btn-primary", id="btn-one", onclick="loading();") }}</p>
+</form>
+<div class="list-group">
+{% for post in posts %}
+{% include '_post.html' %}
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+    <div class="h-75 d-inline-block">
+        <table> 
+        <tr valign="top"> 
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/GAnalytics.svg/1200px-GAnalytics.svg.png" class="rounded float-left" style="max-width: 8%" alt="..."> 
+          <a href="{{ url_for('user', username=post.author.username) }}"> Author: {{ post.author.username }} 
+          </a><br>
+          <strong><a href="{{ url_for('project', body=post.body) }}">Project name: {{ post.body }}</a></strong>
+          <br> {{ post.url }} 
+        </tr> 
+        </table> 
+    </div>
