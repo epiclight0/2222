@@ -1,0 +1,103 @@
+.btn--toggle-03 {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  height: 100%;
+}
+
+.btn--toggle-03 p {
+  color: #fff;
+}
+
+.btn--toggle-03 p:last-child {
+  padding-right: 0;
+}
+
+.btn--toggle-06 {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 32px;
+  border: 1px solid #e5e5e5;
+  padding: 16px 20px;
+  background-color: #f6f6f6;
+}
+
+.btn--toggle-06 p:first-child {
+  padding-left: 0;
+}
+
+.btn--toggle-02 {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: 100%;
+}
+
+.btn--toggle-02 p {
+  color: #000;
+}
+
+.btn--toggle-02 p:last-child {
+  padding-right: 0;
+}
+
+/*div#loading {
+ width: 35px;
+  height: 35px;
+  display: none;
+  background: url(../gif/ajax-loader.gif) no-repeat;
+  cursor: wait;
+  }*/
+  div#loading {
+    display: none;
+    cursor: wait;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    margin-top:5%;
+    margin-bottom:5%;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+  
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
+.image-parent {
+  max-width: 40px;
+}
+
+/*# sourceMappingURL=custom.css.map */
