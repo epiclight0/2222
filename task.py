@@ -36,7 +36,7 @@ class urlf:
         ua = UserAgent()
         userAgent = ua.random
         chrome_options.add_argument(f'user-agent={userAgent}')
-        PATH = "F:\jsprog\start\chromedriver.exe"
+        PATH = "chromedriver"
         driver = webdriver.Chrome(PATH,options=chrome_options,seleniumwire_options=options)
         query = 0
         lists2 = []
