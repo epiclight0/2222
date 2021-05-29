@@ -22,16 +22,22 @@ INSTANCE_NAME ="test1"
   
 # configuration
 
-def gen_connection_string():
+def gen_connection_string(): 
+    # if not on Google then use local MySQL
+    if not os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
+        return "mysql + mysqldb://root:root@34.90.67.52/datab?unix_socket=/cloudsql/gatest-315020:test1"
+
+    else:
         conn_name = os.environ.get('CLOUDSQL_CONNECTION_NAME' '')
         sql_user = os.environ.get('CLOUDSQL_USER', 'root')
         sql_pass = os.environ.get('CLOUDSQL_PASSWORD', '')
-        conn_template = 'mysql+mysqldb://%s:%s@/blog?unix_socket=/cloudsql/%s'
+        conn_template = 'mysql+mysqldb://%s:%s@/datab?unix_socket=/cloudsql/%s'
         return conn_template % (sql_user, sql_pass, conn_name)
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = gen_connection_string()
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 db = SQLAlchemy(app)
 login = LoginManager(app)
 login.login_view = 'login'
