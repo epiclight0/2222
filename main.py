@@ -25,15 +25,35 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     
+db_user = os.environ["DB_USER"]
+db_pass = os.environ["DB_PASS"]
+db_name = os.environ["DB_NAME"]
+db_host = os.environ["DB_HOST"]
+
+# Extract host and port from db_host
+host_args = db_host.split(":")
+db_hostname, db_port = host_args[0], int(host_args[1])
+
+pool = SQLAlchemy.create_engine(
+    # Equivalent URL:
+    # mysql+pymysql://<db_user>:<db_pass>@<db_host>:<db_port>/<db_name>
+    SQLAlchemy.engine.url.URL.create(
+        drivername="mysql+pymysql",
+        username=db_user,  # e.g. "my-database-user"
+        password=db_pass,  # e.g. "my-database-password"
+        host=db_hostname,  # e.g. "127.0.0.1"
+        port=db_port,  # e.g. 3306
+        database=db_name,  # e.g. "my-database-name"
+    ),
+    **db_config
+)
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 login = LoginManager(app)
 login.login_view = 'login'
-#app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
