@@ -25,33 +25,21 @@ from task import urlf
 #    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     
-db_user = os.environ["DB_USER"]
-db_pass = os.environ["DB_PASS"]
-db_name = os.environ["DB_NAME"]
-db_host = os.environ["DB_HOST"]
-
-# Extract host and port from db_host
-host_args = db_host.split(":")
-db_hostname, db_port = host_args[0], int(host_args[1])
-
-pool = SQLAlchemy.create_engine(
-    # Equivalent URL:
-    # mysql+pymysql://<db_user>:<db_pass>@<db_host>:<db_port>/<db_name>
-    SQLAlchemy.engine.url.URL.create(
-        drivername="mysql+pymysql",
-        username=db_user,  # e.g. "my-database-user"
-        password=db_pass,  # e.g. "my-database-password"
-        host=db_hostname,  # e.g. "127.0.0.1"
-        port=db_port,  # e.g. 3306
-        database=db_name,  # e.g. "my-database-name"
-    ),
-    **db_config
-)
+def gen_connection_string():
+    # if not on Google then use local MySQL
+    if not os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
+        return 'mysql://root@localhost/blog'
+    else:
+        conn_name = os.environ.get('CLOUDSQL_CONNECTION_NAME' '')
+        sql_user = os.environ.get('CLOUDSQL_USER', 'root')
+        sql_pass = os.environ.get('CLOUDSQL_PASSWORD', '')
+        conn_template = 'mysql+mysqldb://%s:%s@/blog?unix_socket=/cloudsql/%s'
+        return conn_template % (sql_user, sql_pass, conn_name)
 
 app = Flask(__name__)
 app.config.from_object(Config)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = pool
+app.config['SQLALCHEMY_DATABASE_URI'] = gen_connection_string()
 db = SQLAlchemy(app)
 login = LoginManager(app)
 login.login_view = 'login'
