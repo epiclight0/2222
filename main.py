@@ -8,23 +8,20 @@ from flask import Flask,render_template, flash, redirect, url_for, request, sess
 from flask_login import login_user, logout_user, current_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from config import Config
 from models import User, Post
 from datetime import datetime
 from werkzeug.urls import url_parse
 from forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, Datareq, Deletepost
 from task import urlf
 
-#basedir = os.path.abspath(os.path.dirname(__file__))
+PASSWORD ="root"
+PUBLIC_IP_ADDRESS ="34.90.67.52"
+DBNAME ="datab"
+PROJECT_ID ="gatest-315020"
+INSTANCE_NAME ="test1"
+  
+# configuration
 
-
-#class Config(object):
-#    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-#    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-#        'sqlite:///' + os.path.join(basedir, 'app.db')
-#    SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-    
 def gen_connection_string():
     # if not on Google then use local MySQL
     if not os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
@@ -37,7 +34,6 @@ def gen_connection_string():
         return conn_template % (sql_user, sql_pass, conn_name)
 
 app = Flask(__name__)
-app.config.from_object(Config)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = gen_connection_string()
 db = SQLAlchemy(app)
@@ -68,8 +64,7 @@ def index():
     form = PostForm()
     if form.validate_on_submit():
         url = form.url.data
-        post = Post(body=form.post.data, url=form.url.data, author=current_user)
-        db.session.add(post)
+        Post(body=form.post.data, url=form.url.data, author=current_user)
         db.session.commit()
         tables = urlf.get_url(url)
         session["data"] = tables
