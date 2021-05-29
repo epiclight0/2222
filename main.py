@@ -25,7 +25,7 @@ INSTANCE_NAME ="test1"
 def gen_connection_string(): 
     # if not on Google then use local MySQL
     if not os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
-        return "mysql + mysqldb://root:root@34.90.67.52/datab?unix_socket=/cloudsql/gatest-315020:test1"
+        return "mysql+mysqldb://root:root@34.90.67.52/datab?unix_socket=/cloudsql/gatest-315020:test1"
 
     else:
         conn_name = os.environ.get('CLOUDSQL_CONNECTION_NAME' '')
