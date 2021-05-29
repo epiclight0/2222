@@ -31,3 +31,7 @@ env_variables:
   CLOUD_SQL_PASSWORD: root
   CLOUD_SQL_DATABASE_NAME: datab
   CLOUD_SQL_CONNECTION_NAME: gatest-315020:europe-west4:test1
+
+libraries:
+- name: MySQLdb
+  version: latest

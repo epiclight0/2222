@@ -15,14 +15,14 @@ from werkzeug.urls import url_parse
 from forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, Datareq, Deletepost
 from task import urlf
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+#basedir = os.path.abspath(os.path.dirname(__file__))
 
 
-class Config(object):
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'app.db')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+#class Config(object):
+#    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
+#    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+#        'sqlite:///' + os.path.join(basedir, 'app.db')
+#    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     
 db_user = os.environ["DB_USER"]
@@ -50,6 +50,8 @@ pool = SQLAlchemy.create_engine(
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = pool
 db = SQLAlchemy(app)
 login = LoginManager(app)
 login.login_view = 'login'
