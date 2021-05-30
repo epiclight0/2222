@@ -8,7 +8,7 @@ import json
 from urllib import parse
 from fake_useragent import UserAgent
 from rq import get_current_job
-
+import chromedriver_binary
 
 options = {'connection_timeout': None,'suppress_connection_errors': False}
 
@@ -36,8 +36,7 @@ class urlf:
         ua = UserAgent()
         userAgent = ua.random
         chrome_options.add_argument(f'user-agent={userAgent}')
-        PATH = "chromedriver"
-        driver = webdriver.Chrome(PATH,options=chrome_options,seleniumwire_options=options)
+        driver = webdriver.Chrome(options=chrome_options,seleniumwire_options=options)
         query = 0
         lists2 = []
         driver.get(self)
